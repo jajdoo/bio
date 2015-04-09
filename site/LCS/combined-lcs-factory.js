@@ -29,6 +29,10 @@
                     return this.mismatchCost;
             },
             lcsInit: function (global) {
+                // initialise the matrix left column and top row
+                // if local - all 0
+                // if global - using (gap cost * cell index)
+
                 this.lcsTable = [];
                 for (var i = 0; i < this.leftSeq.length + 1; i++) {
                     this.lcsTable[i] = [];
@@ -53,12 +57,15 @@
                 }
             },
             findMatch: function (start_i, start_j, stopAt) {
+                // generate match
+                // start_i/start_j - where the algorithm will start on the matrix
+                // stopAt - if the cell value is below this, the algorithm will stop.
 
                 var retLeftSeq = '';
                 var retRightSeq = '';
 
-                i = start_i;
-                j = start_j;
+                var i = start_i;
+                var j = start_j;
 
                 while ((i > 0 || j > 0) && this.lcsTable[i][j].value > stopAt) {
                     this.lcsTable[i][j].styles = 'lcs-selected';
@@ -95,7 +102,9 @@
                 this.lcsInit(global);
                 this.calculateMatrix(global);
 
-
+                // find match:
+                // if global - start at bottom right and run back to top left
+                // if local - find max match and work back up until the first cell with value 0
                 var max_i = this.leftSeq.length;
                 var max_j = this.rightSeq.length;
                 var max = Number.NEGATIVE_INFINITY;
@@ -111,7 +120,6 @@
                         }
                     }
                 }
-
                 this.findMatch(max_i, max_j, global ? Number.NEGATIVE_INFINITY : 0);
             }
         };
