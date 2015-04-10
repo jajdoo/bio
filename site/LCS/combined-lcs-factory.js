@@ -8,6 +8,13 @@
         return Math.max.apply(null, numArray);
     }
 
+    traceDirs = Object.freeze({
+        STOP: 'STOP',
+        UP: 'UP',
+        LEFT: 'LEFT',
+        DIAG: 'DIAG'
+    });
+
     app.factory('CombinedLCS',function(){
 
         function CombinedLCS(leftSeq, rightSeq, matchCost, mismatchCost, gapCost){
@@ -36,27 +43,45 @@
                 this.lcsTable = [];
                 for (var i = 0; i < this.leftSeq.length + 1; i++) {
                     this.lcsTable[i] = [];
-                    this.lcsTable[i][0] = {value: global ? this.gapCost * i : 0};
+                    this.lcsTable[i][0] = {
+                        value: global ? this.gapCost * i : 0,
+                        dir: global ? traceDirs.UP : traceDirs.STOP
+                    };
                 }
                 for (var i = 0; i < this.rightSeq.length + 1; i++) {
-                    this.lcsTable[0][i] = {value: global ? this.gapCost * i : 0}
+                    this.lcsTable[0][i] = {
+                        value: global ? this.gapCost * i : 0,
+                        dir: global ? traceDirs.LEFT : traceDirs.STOP
+                    }
                 }
+                this.lcsTable[0][0].dir = traceDirs.STOP;
             },
             calculateMatrix: function (global) {
                 for (var i = 1; i < this.leftSeq.length + 1; i++) {
                     for (var j = 1; j < this.rightSeq.length + 1; j++) {
-                        var diag = this.lcsTable[i - 1][j - 1].value + this.costFunction(this.leftSeq.charAt(i - 1), this.rightSeq.charAt(j - 1));
-                        var left = this.lcsTable[i - 1][j].value + this.costFunction(this.leftSeq.charAt(i - 1), '-');
-                        var top = this.lcsTable[i][j - 1].value + this.costFunction('-', this.rightSeq.charAt(j - 1));
+                        var diag = this.lcsTable[i-1][j-1].value + this.costFunction(this.leftSeq.charAt(i-1), this.rightSeq.charAt(j-1));
+                        var top = this.lcsTable[i-1][j].value + this.costFunction(this.leftSeq.charAt(i-1), '-');
+                        var left = this.lcsTable[i][j-1].value + this.costFunction('-', this.rightSeq.charAt(j-1));
                         var best = global ? getMaxOfArray([diag, left, top]) : getMaxOfArray([0, diag, left, top]);
 
+                        var dir = undefined;
+                        if(diag===best)
+                            dir = traceDirs.DIAG;
+                        else if(top===best)
+                            dir = traceDirs.UP;
+                        else if(left===best)
+                            dir = traceDirs.LEFT;
+                        else
+                            dir = traceDirs.STOP;
+
                         this.lcsTable[i][j] = {
-                            value: best
+                            value: best,
+                            dir: dir
                         };
                     }
                 }
             },
-            findMatch: function (start_i, start_j, stopAt) {
+            findMatch: function (start_i, start_j) {
                 // generate match
                 // start_i/start_j - where the algorithm will start on the matrix
                 // stopAt - if the cell value is below this, the algorithm will stop.
@@ -67,28 +92,28 @@
                 var i = start_i;
                 var j = start_j;
 
-                while ((i > 0 || j > 0) && this.lcsTable[i][j].value > stopAt) {
+                while (this.lcsTable[i][j].dir!==traceDirs.STOP) {
                     this.lcsTable[i][j].styles = 'lcs-selected';
-                    var diag = i === 0 || j === 0 ? Number.NEGATIVE_INFINITY : this.lcsTable[i - 1][j - 1].value;
-                    var top = i === 0 ? Number.NEGATIVE_INFINITY : this.lcsTable[i - 1][j].value;
-                    var left = j === 0 ? Number.NEGATIVE_INFINITY : this.lcsTable[i][j - 1].value;
-                    var best = getMaxOfArray([diag, left, top]);
 
-                    if (diag === best) {
-                        retLeftSeq = this.leftSeq[i - 1] + retLeftSeq;
-                        retRightSeq = this.rightSeq[j - 1] + retRightSeq;
-                        i--;
-                        j--;
-                    }
-                    else if (top === best) {
-                        retLeftSeq = this.leftSeq[i - 1] + retLeftSeq;
-                        retRightSeq = '-' + retRightSeq;
-                        i--;
-                    }
-                    else {
-                        retLeftSeq = '-' + retLeftSeq;
-                        retRightSeq = this.rightSeq[j - 1] + retRightSeq;
-                        j--;
+                    switch(this.lcsTable[i][j].dir) {
+                        case traceDirs.DIAG:
+                            retLeftSeq = this.leftSeq[i-1] + retLeftSeq;
+                            retRightSeq = this.rightSeq[j-1] + retRightSeq;
+                            i--;
+                            j--;
+                            break;
+                        case traceDirs.UP:
+                            retLeftSeq = this.leftSeq[i-1] + retLeftSeq;
+                            retRightSeq = '-' + retRightSeq;
+                            i--;
+                            break;
+                        case traceDirs.LEFT:
+                            retLeftSeq = '-' + retLeftSeq;
+                            retRightSeq = this.rightSeq[j-1] + retRightSeq;
+                            j--;
+                            break;
+                        case traceDirs.STOP:
+                            break;
                     }
                 }
 
@@ -120,7 +145,7 @@
                         }
                     }
                 }
-                this.findMatch(max_i, max_j, global ? Number.NEGATIVE_INFINITY : 0);
+                this.findMatch(max_i, max_j);
             }
         };
 

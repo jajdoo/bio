@@ -7,9 +7,12 @@
 
         //----------------------------------
         //this.leftSeq = 'ATCTGAT';
-        this.leftSeq = 'CACTA';
+        //this.leftSeq = 'CACTA';
+        this.leftSeq = 'AGTCTGAGCTATGACTACG';
+
         //this.rightSeq = 'TGCATA';
-        this.rightSeq = 'CTACTC';
+        //this.rightSeq = 'CTACTC';
+        this.rightSeq = 'CACTGCACTTATGCCTAGT';
         this.match = {};
         this.matchCost = 1;
         this.mismatchCost = -1;
