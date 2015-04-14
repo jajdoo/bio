@@ -41,21 +41,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lcs.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="lcs.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/site/LCS/lcs.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="0.4069641">
               <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="combined-lcs-factory.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="combined-lcs-factory.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/site/LCS/combined-lcs-factory.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5179543">
-              <caret line="66" column="44" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="122" column="17" selection-start-line="122" selection-start-column="17" selection-end-line="122" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -64,8 +64,8 @@
       <file leaf-file-name="lcs.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/site/LCS/lcs.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.5">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+            <state vertical-scroll-proportion="-10.153846">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -101,10 +101,10 @@
         <option value="$PROJECT_DIR$/site/LCS/CombinedLCS.js" />
         <option value="$PROJECT_DIR$/site/LCS/combined-lcs.js" />
         <option value="$PROJECT_DIR$/site/index.html" />
-        <option value="$PROJECT_DIR$/site/LCS/lcs.js" />
         <option value="$PROJECT_DIR$/site/LCS/lcs.css" />
-        <option value="$PROJECT_DIR$/site/LCS/lcs.html" />
         <option value="$PROJECT_DIR$/site/LCS/combined-lcs-factory.js" />
+        <option value="$PROJECT_DIR$/site/LCS/lcs.html" />
+        <option value="$PROJECT_DIR$/site/LCS/lcs.js" />
       </list>
     </option>
   </component>
@@ -326,10 +326,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/site/LCS/lcs.js">
+    <entry file="file://$PROJECT_DIR$/site/LCS/lcs.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
+        <state vertical-scroll-proportion="-10.153846">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -342,18 +342,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/site/LCS/lcs.html">
+    <entry file="file://$PROJECT_DIR$/site/LCS/combined-lcs-factory.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.5">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="122" column="17" selection-start-line="122" selection-start-column="17" selection-end-line="122" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/site/LCS/combined-lcs-factory.js">
+    <entry file="file://$PROJECT_DIR$/site/LCS/lcs.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5179543">
-          <caret line="66" column="44" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.4069641">
+          <caret line="22" column="44" selection-start-line="22" selection-start-column="44" selection-end-line="22" selection-end-column="44" />
           <folding />
         </state>
       </provider>
